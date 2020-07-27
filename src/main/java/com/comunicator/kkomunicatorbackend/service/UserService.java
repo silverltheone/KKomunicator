@@ -23,6 +23,10 @@ public class UserService {
         return repository.findById(id).orElseThrow(UserNotFoundException::new);
     }
 
+    public User getByEmailAndPassword(String email, String password) throws UserNotFoundException {
+        return repository.findByEmailAndPassword(email, password).orElseThrow((UserNotFoundException::new));
+    }
+
     public User create(User user) {
         return repository.save(user);
     }

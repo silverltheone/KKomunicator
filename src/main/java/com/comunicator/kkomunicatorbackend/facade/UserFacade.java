@@ -29,6 +29,11 @@ public class UserFacade {
         return mapper.mapToUserDto(user);
     }
 
+    public UserDto getByEmailAndPassword(String email, String password) throws UserNotFoundException {
+        User user = service.getByEmailAndPassword(email, password);
+        return mapper.mapToUserDto(user);
+    }
+
     public UserDto create(UserDto userDto) {
         User user = service.create(mapper.mapToUser(userDto));
         return mapper.mapToUserDto(user);

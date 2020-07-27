@@ -25,6 +25,11 @@ public class UserController {
         return facade.get(id);
     }
 
+    @GetMapping(value = "/getByEmailAndPassword/{email}/{password}")
+    public UserDto getByEmailAndPassword(@PathVariable String email, @PathVariable String password) throws UserNotFoundException{
+        return facade.getByEmailAndPassword(email, password);
+    }
+
     @PostMapping
     public UserDto create(@RequestBody UserDto userDto) {
         return facade.create(userDto);
