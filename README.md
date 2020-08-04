@@ -13,7 +13,7 @@ mail: **testinguser1@op.pl
 #### You can define Spring Security mock data in class:
   com.comunicator.frontend.security.SecurityConfiguration
 #### NOTE2: 
-#### To fully use app create user(in login view) using:
+#### To fully use app: create user(in login view) using:
 mail: **testinguser1@op.pl
     password: password1**
     ###OR###
