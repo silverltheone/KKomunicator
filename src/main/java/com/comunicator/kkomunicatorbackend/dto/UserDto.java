@@ -1,14 +1,16 @@
 package com.comunicator.kkomunicatorbackend.dto;
 
-import com.comunicator.kkomunicatorbackend.domain.Message;
-import com.comunicator.kkomunicatorbackend.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class UserDto {
 
     private Long id;
@@ -16,8 +18,9 @@ public class UserDto {
     private String lastName;
     private String email;
     private String password;
-    private List<User> friends;
-    private List<User> friendOf;
-    private List<Message> sentMessages;
-    private List<Message> receivedMessages;
+    private List<Long> friendsId;
+    private List<Long> friendsOfId;
+    private List<Long> sentMessagesId;
+    private List<Long> receivedMessagesId;
+
 }

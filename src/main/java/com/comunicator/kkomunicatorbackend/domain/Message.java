@@ -18,11 +18,11 @@ public class Message {
     @Column(name = "MESSAGE_ID")
     private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "SENDER_USER_ID")
     private User sender;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn(name = "RECEIVER_USER_ID")
     private User receiver;
 

@@ -25,13 +25,19 @@ public class MessageController {
         return facade.get(id);
     }
 
-    @PostMapping
-    public MessageDto create(@RequestBody MessageDto messageDto) {
+    @GetMapping(value = "/getEmailBySenderOrReceiverId/{id}")
+    public List<MessageDto> getEmailBySenderOrReceiverId(@PathVariable Long id) throws MessageNotFoundException {
+        return facade.getEmailBySenderOrReceiverId(id);
+    }
+
+
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public MessageDto create(@RequestBody MessageDto messageDto) throws UserNotFoundException {
         return facade.create(messageDto);
     }
 
-    @PutMapping
-    public MessageDto update(@RequestBody MessageDto messageDto) {
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    public MessageDto update(@RequestBody MessageDto messageDto) throws UserNotFoundException {
         return facade.update(messageDto);
     }
 

@@ -30,13 +30,18 @@ public class UserController {
         return facade.getByEmailAndPassword(email, password);
     }
 
-    @PostMapping
-    public UserDto create(@RequestBody UserDto userDto) {
+    @GetMapping(value = "/getByEmail/{email}")
+    public UserDto getByEmail(@PathVariable String email) throws UserNotFoundException{
+        return facade.getByEmail(email);
+    }
+
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public UserDto create(@RequestBody UserDto userDto) throws UserNotFoundException {
         return facade.create(userDto);
     }
 
-    @PutMapping
-    public UserDto update(@RequestBody UserDto userDto) {
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    public UserDto update(@RequestBody UserDto userDto) throws UserNotFoundException {
         return facade.update(userDto);
     }
 

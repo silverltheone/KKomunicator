@@ -1,17 +1,20 @@
 package com.comunicator.kkomunicatorbackend.dto;
 
-import com.comunicator.kkomunicatorbackend.domain.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @AllArgsConstructor
+@NoArgsConstructor
 public class InfoLogDto {
 
     private Long id;
-    private User user;
+    private Long userId;
     private LocalDate date;
     private String type;
 }

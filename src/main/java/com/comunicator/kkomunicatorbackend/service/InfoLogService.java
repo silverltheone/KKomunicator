@@ -42,9 +42,8 @@ public class InfoLogService {
         }
     }
 
-    public boolean delete(Long id) throws InfoLogNotFoundException {
-        InfoLog infoLog = repository.findById(id).orElseThrow(InfoLogNotFoundException::new);
-        repository.delete(infoLog);
+    public boolean delete(Long id) {
+        repository.deleteById(id);
         return !repository.existsById(id);
     }
 }

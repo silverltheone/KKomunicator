@@ -35,6 +35,7 @@ public class InvitationService {
             updatedInvitation.setSender(invitation.getSender());
             updatedInvitation.setReceiver(invitation.getReceiver());
             updatedInvitation.setSendDate(invitation.getSendDate());
+            updatedInvitation.setWasRead(invitation.isWasRead());
             repository.save(updatedInvitation);
             return updatedInvitation;
         } else {
@@ -42,9 +43,12 @@ public class InvitationService {
         }
     }
 
-    public boolean delete(Long id) throws InvitationNotFoundException {
-        Invitation invitation = repository.findById(id).orElseThrow(InvitationNotFoundException::new);
-        repository.delete(invitation);
+    public boolean delete(Long id) {
+        repository.deleteById(id);
         return !repository.existsById(id);
+    }
+
+    public List<Invitation> getInvitationBySenderOrReceiverId(Long id) {
+        return repository.getInvitationBySenderOrReceiverId(id);
     }
 }

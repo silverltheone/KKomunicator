@@ -25,13 +25,18 @@ public class InvitationController {
         return facade.get(id);
     }
 
-    @PostMapping
-    public InvitationDto create(@RequestBody InvitationDto invitationDto) {
+    @GetMapping(value = "/getInvitationBySenderOrReceiverId/{id}")
+    public List<InvitationDto> getInvitationBySenderOrReceiverId(@PathVariable Long id) throws InvitationNotFoundException {
+        return facade.getInvitationBySenderOrReceiverId(id);
+    }
+
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public InvitationDto create(@RequestBody InvitationDto invitationDto) throws UserNotFoundException {
         return facade.create(invitationDto);
     }
 
-    @PutMapping
-    public InvitationDto update(@RequestBody InvitationDto invitationDto) {
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    public InvitationDto update(@RequestBody InvitationDto invitationDto) throws UserNotFoundException {
         return facade.update(invitationDto);
     }
 

@@ -1,6 +1,7 @@
 package com.comunicator.kkomunicatorbackend.facade;
 
 import com.comunicator.kkomunicatorbackend.controller.MessageNotFoundException;
+import com.comunicator.kkomunicatorbackend.controller.UserNotFoundException;
 import com.comunicator.kkomunicatorbackend.domain.Message;
 import com.comunicator.kkomunicatorbackend.dto.MessageDto;
 import com.comunicator.kkomunicatorbackend.mapper.MessageMapper;
@@ -29,17 +30,22 @@ public class MessageFacade {
         return mapper.mapToMessageDto(message);
     }
 
-    public MessageDto create(MessageDto messageDto) {
+    public List<MessageDto> getEmailBySenderOrReceiverId(Long id)  {
+        List<Message> messages = service.getEmailBySenderOrReceiverId(id);
+        return mapper.mapToMessageDtoList(messages);
+    }
+
+    public MessageDto create(MessageDto messageDto) throws UserNotFoundException {
         Message message = service.create(mapper.mapToMessage(messageDto));
         return mapper.mapToMessageDto(message);
     }
 
-    public MessageDto update(MessageDto messageDto) {
+    public MessageDto update(MessageDto messageDto) throws UserNotFoundException {
         Message message = service.update(mapper.mapToMessage(messageDto));
         return mapper.mapToMessageDto(message);
     }
 
-    public boolean delete(Long id) throws MessageNotFoundException{
+    public boolean delete(Long id) {
         return service.delete(id);
     }
 }

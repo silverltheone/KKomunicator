@@ -1,6 +1,7 @@
 package com.comunicator.kkomunicatorbackend.facade;
 
 import com.comunicator.kkomunicatorbackend.controller.InfoLogNotFoundException;
+import com.comunicator.kkomunicatorbackend.controller.UserNotFoundException;
 import com.comunicator.kkomunicatorbackend.domain.InfoLog;
 import com.comunicator.kkomunicatorbackend.dto.InfoLogDto;
 import com.comunicator.kkomunicatorbackend.mapper.InfoLogMapper;
@@ -29,17 +30,17 @@ public class InfoLogFacade {
         return mapper.mapToInfoLogDto(infoLog);
     }
 
-    public InfoLogDto create(InfoLogDto infoLogDto) {
+    public InfoLogDto create(InfoLogDto infoLogDto) throws UserNotFoundException {
         InfoLog infoLog = service.create(mapper.mapToInfoLog(infoLogDto));
         return mapper.mapToInfoLogDto(infoLog);
     }
 
-    public InfoLogDto update(InfoLogDto infoLogDto) {
+    public InfoLogDto update(InfoLogDto infoLogDto) throws UserNotFoundException {
         InfoLog infoLog = service.update(mapper.mapToInfoLog(infoLogDto));
         return mapper.mapToInfoLogDto(infoLog);
     }
 
-    public boolean delete(Long id) throws InfoLogNotFoundException{
+    public boolean delete(Long id) {
         return service.delete(id);
     }
 }

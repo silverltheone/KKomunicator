@@ -25,13 +25,13 @@ public class InfoLogController {
         return facade.get(id);
     }
 
-    @PostMapping
-    public InfoLogDto create(@RequestBody InfoLogDto infoLogDto) {
+    @PostMapping(consumes = "application/json", produces = "application/json")
+    public InfoLogDto create(@RequestBody InfoLogDto infoLogDto) throws UserNotFoundException {
         return facade.create(infoLogDto);
     }
 
-    @PutMapping
-    public InfoLogDto update(@RequestBody InfoLogDto infoLogDto) {
+    @PutMapping(consumes = "application/json", produces = "application/json")
+    public InfoLogDto update(@RequestBody InfoLogDto infoLogDto) throws UserNotFoundException {
         return facade.update(infoLogDto);
     }
 

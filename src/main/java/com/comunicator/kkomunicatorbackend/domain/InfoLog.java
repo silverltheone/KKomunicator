@@ -19,7 +19,7 @@ public class InfoLog {
     private Long id;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID")
+    @JoinColumn(name = "USER")
     private User user;
 
     @Column(name = "DATE")

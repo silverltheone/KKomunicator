@@ -2,6 +2,7 @@ package com.comunicator.kkomunicatorbackend.service;
 
 import com.comunicator.kkomunicatorbackend.controller.MessageNotFoundException;
 import com.comunicator.kkomunicatorbackend.domain.Message;
+import com.comunicator.kkomunicatorbackend.domain.User;
 import com.comunicator.kkomunicatorbackend.repository.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +20,16 @@ public class MessageService {
         return repository.findAll();
     }
 
+    public List<Message> getAllById(List<Long> messagesId) {
+        return repository.findAllById(messagesId);
+    }
+
     public Message getOne(final Long id) throws MessageNotFoundException {
         return repository.findById(id).orElseThrow(MessageNotFoundException::new);
+    }
+
+    public List<Message> getEmailBySenderOrReceiverId(Long id) {
+        return repository.getEmailBySenderOrReceiverId(id);
     }
 
     public Message create(Message message) {
@@ -44,9 +53,8 @@ public class MessageService {
         }
     }
 
-    public boolean delete(Long id) throws MessageNotFoundException {
-        Message message = repository.findById(id).orElseThrow(MessageNotFoundException::new);
-        repository.delete(message);
+    public boolean delete(Long id)  {
+        repository.deleteById(id);
         return !repository.existsById(id);
     }
 }

@@ -6,10 +6,12 @@ import com.comunicator.kkomunicatorbackend.dto.UserDto;
 import com.comunicator.kkomunicatorbackend.mapper.UserMapper;
 import com.comunicator.kkomunicatorbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@EnableAspectJAutoProxy
 @Component
 public class UserFacade {
 
@@ -34,6 +36,11 @@ public class UserFacade {
         return mapper.mapToUserDto(user);
     }
 
+    public UserDto getByEmail(String email) throws  UserNotFoundException {
+        User user = service.getByEmail(email);
+        return mapper.mapToUserDto(user);
+    }
+
     public UserDto create(UserDto userDto) {
         User user = service.create(mapper.mapToUser(userDto));
         return mapper.mapToUserDto(user);
@@ -44,7 +51,7 @@ public class UserFacade {
         return mapper.mapToUserDto(user);
     }
 
-    public boolean delete(Long id) throws UserNotFoundException {
+    public boolean delete(Long id)  {
         return service.delete(id);
     }
 }
